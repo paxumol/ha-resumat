@@ -14,12 +14,13 @@ from .tokens import Token
 
 # Erlaubte Bereiche je Menü: (min, max, schritt). Werte außerhalb lehnt HA ab.
 # Nur Menüs mit Eintrag hier werden beschreibbar angelegt.
+# Grenzen der Hysteresen und der Anhebung laut Waterkotte-Anleitung (Resümat CD).
 LIMITS: dict[str, tuple[float, float, float]] = {
-    "02.10": (-5.0, 10.0, 0.5),   # Externe Anhebung (ob negativ zulässig ist, noch ungeprüft)
+    "02.10": (-5.0, 5.0, 0.5),    # Externe Anhebung, wirkt nur im Zeitfenster 02.13–02.14
     "04.04": (30.0, 60.0, 0.5),   # Warmwasser Soll
     "04.05": (15.0, 40.0, 0.5),   # Beckenwasser Soll
-    "04.06": (1.0, 10.0, 0.5),    # Warmwasser Hysterese
-    "04.07": (1.0, 10.0, 0.5),    # Beckenwasser Hysterese
+    "04.06": (5.0, 10.0, 0.5),    # Warmwasser Hysterese (Werk: 5 K)
+    "04.07": (0.5, 5.0, 0.5),     # Beckenwasser Schaltdifferenz (Werk: 1 K)
 }
 
 

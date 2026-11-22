@@ -28,16 +28,17 @@ Der Adapter verträgt vermutlich nur eine Verbindung gleichzeitig – keine ande
 
 | Menü | Name | Entität | Bereich |
 |---|---|---|---|
-| 02.10 | Externe Anhebung | Zahl | −5 … +10 °C |
+| 02.10 | Externe Anhebung | Zahl | −5 … +5 K |
 | 04.04 | Warmwasser Soll | Zahl | 30 … 60 °C |
 | 04.05 | Beckenwasser Temperatur Soll | Zahl | 15 … 40 °C |
-| 04.06 / 04.07 | Warmwasser- / Beckenwasser-Hysterese | Zahl | 1 … 10 K |
+| 04.06 | Warmwasser-Hysterese | Zahl | 5 … 10 K |
+| 04.07 | Beckenwasser-Schaltdifferenz | Zahl | 0,5 … 5 K |
 | 02.00 | Handabschaltung | Schalter | an = abgeschaltet |
 | 04.00 | Abschaltung (Warmwasser) | Schalter | an = abgeschaltet |
 | 02.13 / 02.14 | Sollwertänderung Ein / Aus | Uhrzeit | |
 | 04.01 / 04.02 | Warmwasser Zeit ein / aus | Uhrzeit | |
 
-Nach jedem Schreiben wird der Wert zurückgelesen; wurde er nicht übernommen, meldet Home Assistant einen Fehler. Die Bereiche stehen in `number.py` (`LIMITS`). Ob die Steuerung negative Werte bei „Externe Anhebung“ akzeptiert, ist noch nicht geprüft – zuerst mit −1 testen und den Rücklauf-Sollwert (01.03) beobachten.
+Nach jedem Schreiben wird der Wert zurückgelesen; wurde er nicht übernommen, meldet Home Assistant einen Fehler. Die Bereiche stehen in `number.py` (`LIMITS`). Grenzen laut Waterkotte-Anleitung zum Resümat CD. Die „Externe Anhebung“ (02.10) verschiebt den Rücklauf-Sollwert um −5 … +5 K, wirkt aber nur im Zeitfenster 02.13–02.14 oder bei geschlossenem Digitaleingang „Externe Sollwertänderung“.
 
 Die Uhrzeit der Wärmepumpe (05.00) wird nur angezeigt, nicht gesetzt.
 
