@@ -16,12 +16,30 @@ Einstellungen → Geräte & Dienste → Integration hinzufügen → „Wärmepum
 
 Der Adapter verträgt vermutlich nur eine Verbindung gleichzeitig – keine anderen Programme (z. B. wp-resumat-ms) parallel darauf zugreifen lassen.
 
-## Entitäten (nur lesend)
+## Entitäten
 
+**Lesend**
 - Temperaturen, Drücke, Betriebsstunden usw. als Sensoren mit Einheit
 - 0/1-Werte als Binärsensoren, dazu „Heizbetrieb“, „Kühlbetrieb“, „Warmwasserbetrieb“
 - Statusregister (Bitfelder) sind standardmäßig deaktiviert und können bei Bedarf aktiviert werden
 - Das Kennwort (Menü 06.00) wird nicht als Entität angelegt
+
+**Schreibend**
+
+| Menü | Name | Entität | Bereich |
+|---|---|---|---|
+| 02.10 | Externe Anhebung | Zahl | −5 … +10 °C |
+| 04.04 | Warmwasser Soll | Zahl | 30 … 60 °C |
+| 04.05 | Beckenwasser Temperatur Soll | Zahl | 15 … 40 °C |
+| 04.06 / 04.07 | Warmwasser- / Beckenwasser-Hysterese | Zahl | 1 … 10 K |
+| 02.00 | Handabschaltung | Schalter | an = abgeschaltet |
+| 04.00 | Abschaltung (Warmwasser) | Schalter | an = abgeschaltet |
+| 02.13 / 02.14 | Sollwertänderung Ein / Aus | Uhrzeit | |
+| 04.01 / 04.02 | Warmwasser Zeit ein / aus | Uhrzeit | |
+
+Nach jedem Schreiben wird der Wert zurückgelesen; wurde er nicht übernommen, meldet Home Assistant einen Fehler. Die Bereiche stehen in `number.py` (`LIMITS`). Ob die Steuerung negative Werte bei „Externe Anhebung“ akzeptiert, ist noch nicht geprüft – zuerst mit −1 testen und den Rücklauf-Sollwert (01.03) beobachten.
+
+Die Uhrzeit der Wärmepumpe (05.00) wird nur angezeigt, nicht gesetzt.
 
 Das Abfrageintervall ist in den Optionen der Integration änderbar (Standard 60 s).
 

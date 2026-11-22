@@ -23,6 +23,14 @@ MODE_MENUS = {
 }
 DUPLICATE_MENUS = {"09.10", "09.11", "09.12"}
 
+# Beschreibbare Werte, die als Steuer-Entität (number/switch/time) angelegt
+# werden und daher nicht zusätzlich als Sensor. Die Uhrzeit (05.00) bleibt Sensor.
+NOT_CONTROLLED = {"05.00"}
+
+
+def is_controlled(token: Token) -> bool:
+    return token.writable and token.menu not in NOT_CONTROLLED
+
 
 def device_info(coordinator: ResumatCoordinator) -> DeviceInfo:
     entry = coordinator.config_entry

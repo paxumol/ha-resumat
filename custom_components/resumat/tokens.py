@@ -48,6 +48,20 @@ class Token:
         # IntegerString und Unbekanntes: Hex wie im Java-Code
         return raw.hex()
 
+    def encode(self, value: Any) -> bytes:
+        """Wert in Rohbytes für einen Schreibbefehl wandeln."""
+        dt = self.data_type
+        if dt == "Float":
+            return struct.pack("<f", float(value))
+        if dt == "Boolean":
+            return (1 if value else 0).to_bytes(self.length, "big")
+        if dt == "Integer":
+            return int(value).to_bytes(self.length, "big")
+        if dt == "Time":
+            # value: datetime.time -> Sekunden, Minuten, Stunden (wie decode)
+            return bytes([value.second, value.minute, value.hour])
+        raise ValueError(f"Schreiben für Datentyp {dt} nicht unterstützt")
+
 
 def load_tokens() -> list[Token]:
     """CSV lesen (blockierend, im Executor aufrufen)."""

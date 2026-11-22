@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from . import ResumatConfigEntry
 from .coordinator import ResumatCoordinator
-from .entity import EXCLUDED_MENUS, MODE_MENUS, ResumatEntity, display_names
+from .entity import EXCLUDED_MENUS, MODE_MENUS, ResumatEntity, display_names, is_controlled
 from .tokens import Token
 
 
@@ -25,7 +25,7 @@ async def async_setup_entry(
     names = display_names(coordinator.tokens)
     entities: list[BinarySensorEntity] = []
     for token in coordinator.tokens:
-        if token.menu in EXCLUDED_MENUS:
+        if token.menu in EXCLUDED_MENUS or is_controlled(token):
             continue
         if token.menu in MODE_MENUS:
             entities.append(ResumatModeSensor(coordinator, token, MODE_MENUS[token.menu]))

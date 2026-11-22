@@ -19,6 +19,7 @@ from .entity import (
     MODE_MENUS,
     ResumatEntity,
     display_names,
+    is_controlled,
 )
 from .tokens import Token
 
@@ -50,6 +51,7 @@ async def async_setup_entry(
         if token.data_type != "Boolean"
         and token.menu not in EXCLUDED_MENUS | DUPLICATE_MENUS
         and token.menu not in MODE_MENUS
+        and not is_controlled(token)
     )
 
 
