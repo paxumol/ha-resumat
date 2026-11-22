@@ -1,0 +1,146 @@
+#MenueEntry; MenueName; MenueType; MenueAction; Unit; AddressByte_1; AddressByte_2; ValueByte_1; ValueByte_2; ValueDatatype
+00.00; Versions-Nummer; static; false; Text; 00; 00; 00; 02; Text
+00.01; Versions-Datum; static; false; Datum; 00; 02; 00; 03; Date
+00.02; Betriebs-Mode; static; false; a.b.c.d; 00; 05; 00; 03; IntegerString
+01.00; Temp-Aussen; dynamic; false; Grad Celsius; 00; 08; 00; 04; Float
+01.01; Temp-Aussen-24h; dynamic; false; Grad Celsius; 00; 0C; 00; 04; Float
+01.02; Temp-Aussen-1h; dynamic; false; Grad Celsius; 00; 10; 00; 04; Float
+01.03; Temp-Ruecklauf Soll; dynamic; false; Grad Celsius; 00; 14; 00; 04; Float
+01.04; Temp-Ruecklauf; dynamic; false; Grad Celsius; 00; 18; 00; 04; Float
+01.05; Temp-Vorlauf; dynamic; false; Grad Celsius; 00; 1C; 00; 04; Float
+01.06; Temp-WW Soll; dynamic; false; Grad Celsius; 00; 20; 00; 04; Float
+01.07; Temp-WW Ist; dynamic; false; Grad Celsius; 00; 24; 00; 04; Float
+01.08; Temp-Raum; static; false; Grad Celsius; 00; 28; 00; 04; Float
+01.09; Temp-Raum-1h; static; false; Grad Celsius; 00; 2C; 00; 04; Float
+01.10; Temp-WQuelle-Ein; dynamic; false; Grad Celsius; 00; 30; 00; 04; Float
+01.11; Temp-WQuelle-Aus; dynamic; false; Grad Celsius; 00; 34; 00; 04; Float
+01.12; Temp-Verdampfer; dynamic; false; Grad Celsius; 00; 38; 00; 04; Float
+01.13; Temp-Kondensator; dynamic; false; Grad Celsius; 00; 3C; 00; 04; Float
+01.14; Temp-Saugleitung; dynamic; false; Grad Celsius; 00; 40; 00; 04; Float
+01.15; Temp-frei; static; false; Grad Celsius; 00; 44; 00; 04; Float
+01.16; Druck-Verdampfer; dynamic; false; bar Druck; 00; 48; 00; 04; Float
+01.17; Druck-Kondensator; dynamic; false; bar Druck; 00; 4C; 00; 04; Float
+02.05; Hzg: Temp Ruecklauf Soll; dynamic; false; Grad Celsius; 00; 50; 00; 04; Float
+02.06; Hzg: Temp Ruecklauf Ist; dynamic; false; Grad Celsius; 00; 54; 00; 04; Float
+03.05; Klg: Temp Ruecklauf Soll; dynamic; false; Grad Celsius; 00; 58; 00; 04; Float
+03.06; Klg: Temp Ruecklauf Ist; dynamic; false; Grad Celsius; 00; 5C; 00; 04; Float
+04.03; WW: Temp Ist; static; false; Grad Celsius; 00; 60; 00; 04; Float
+05.00; Uhrzeit; dynamic; true; Uhrzeit; 00; 64; 00; 03; Time
+05.01; Datum; dynamic; false; Datum; 00; 67; 00; 03; Date
+05.02; Betriebsstunden Kompressor; dynamic; false; Stunden; 00; 6A; 00; 04; Float
+05.03; Betriebsstunden Heizbetrieb; dynamic; false; Stunden; 00; 6E; 00; 04; Float
+05.04; Betriebsstunden Warmwasserbetrieb; dynamic; false; Stunden; 00; 72; 00; 04; Float
+05.05; Betriebsstunden Stufe 2; dynamic; false; Stunden; 00; 76; 00; 04; Float
+05.06; Messbeginn Zeit Kompressor; static; false; Uhrzeit; 00; 7A; 00; 03; Time
+05.07; Messbeginn Datum Kompressor; static; false; Datum; 00; 7D; 00; 03; Date
+05.08; Messbeginn Zeit Pumpen; static; false; Uhrzeit; 00; 80; 00; 03; Time
+05.09; Messbeginn Datum Pumpen; static; false; Datum; 00; 83; 00; 03; Date
+05.10; Betriebsstunden Reset Kompressor; static; false; 0/1; 00; 86; 00; 01; Boolean
+05.11; Betriebsstunden Reset Pumpen; static; false; 0/1; 00; 87; 00; 01; Boolean
+06.00; Kennwort; static; false; 0-255; 00; 88; 00; 01; Integer
+06.01; Werkseinstellung; static; false; 0/1; 00; 89; 00; 01; Boolean
+06.06; Reset Waermepumpe; static; false; 0/1; 00; 8A; 00; 01; Boolean
+06.23; Display Zeile 1; dynamic; false; Integer; 00; 8E; 00; 02; Integer
+06.24; Display Zeile 2; dynamic; false; Integer; 00; 90; 00; 01; Integer
+07.00; Ausfall Zeit; dynamic; false; Uhrzeit; 00; 91; 00; 03; Time
+07.01; Ausfall Datum; dynamic; false; Datum; 00; 94; 00; 03; Date
+07.02; Ausfall Betriebszustaende; dynamic; false; Binary; 00; 97; 00; 01; Binary
+07.03; Ausfall DO Buffer; dynamic; false; Binary; 00; 98; 00; 01; Binary
+07.04; Ausfall DI Buffer; dynamic; false; Binary; 00; 99; 00; 01; Binary
+07.05; Ausfall AI Error; dynamic; false; Binary; 00; 9A; 00; 01; Binary
+07.06; Ausfall AI DI; dynamic; false; Binary; 00; 9B; 00; 01; Binary
+07.07; Ausfall AI Temp Aussen; dynamic; false; Grad Celsius; 00; 9C; 00; 04; Float
+07.08; Ausfall AI Temp WQ Ein; dynamic; false; Grad Celsius; 00; A0; 00; 04; Float
+09.10; Mode Heizung; dynamic; false; Binary; 00; DF; 00; 01; Binary
+09.11; Mode Kuehlung; dynamic; false; Binary; 00; E0; 00; 01; Binary
+09.12; Mode Warmwasser; dynamic; false; Binary; 00; E1; 00; 01; Binary
+06.02; Modem Klingelzeichen; static; false; 0-20; 01; 4B; 00; 01; Integer
+02.01; Hzg Einsatzzeitpunkt Sollwert; static; false; Grad Celcius; 00; F4; 00; 04; Float
+02.02; Hzg Ruecklauf Sollwert am Einsatzp.; static; false; Grad Celsius; 00; F8; 00; 04; Float
+02.03; Kennline Steigung Soll; static; false; Prozent; 00; FC; 00; 04; Float
+02.04; Kennline Obere Begrenzung; static; false; Grad Celsius; 01; 00; 00; 04; Float
+02.07; Sollwertanhebung 4k fuer 24 Stunden; static; false; 0/1; 01; 04; 00; 01; Boolean
+02.08; Pilotraum Sollwert; static; false; Grad Celsius; 01; 05; 00; 04; Float
+02.09; Pilotraum Faktor; static; false; 0/1; 01; 09; 00; 01; Boolean
+02.10; Externe Anhebung; static; true; Grad Celsius; 01; 0A; 00; 04; Float
+02.11; Freigabe Heizung; static; false; Uhrzeit; 01; 0E; 00; 03; Time
+02.12; Sperren Heizung; static; false; Uhrzeit; 01; 11; 00; 03; Time
+02.13; Sollwertaenderung Ein; static; true; Uhrzeit; 01; 14; 00; 03; Time
+02.14; Sollwertaenderung Aus; static; true; Uhrzeit; 01; 17; 00; 03; Time
+02.15; St. 2 Kl. Obere Begrenzung; static; false; Grad Celsius; 01; 1A; 00; 04; Float
+02.16; Kennlinie Hysterese; static; false; Kelvin; 01; 1E; 00; 04; Float
+02.17; Pumpen Nachlaufzeit; static; false; Minuten; 01; 22; 00; 01; Integer
+03.01; Klg Einsatzzeitpunkt; static; false; Grad Celsius; 01; 24; 00; 04; Float
+03.00; Abschaltung; static; false; 0/1; 01; 23; 00; 01; Boolean
+03.02; Ruecklauftemp. Sollwert am Einsatzzeitp.; static; false; Grad Celsius; 01; 28; 00; 04; Float
+03.03; Klg Kennlinie Steigung Soll; static; false; Prozent; 01; 2C; 00; 04; Float
+03.04; Kennlinie untere Begrenzung; static; false; Grad Celsius; 01; 30; 00; 04; Float
+04.02; Zeit aus; static; true; Uhrzeit; 01; 38; 00; 03; Time
+04.01; Zeit ein; static; true; Uhrzeit; 01; 35; 00; 03; Time
+04.00; Abschaltung; static; true; 0/1; 01; 34; 00; 01; Boolean
+04.04; Warmwasser Soll; static; true; Grad Celsius; 01; 3b; 00; 04; Float
+04.05; Beckenwasser Temperatur Soll; static; true; Grad Celsius; 01; 3F; 00; 04; Float
+04.06; Warmwasser Hysterese; static; true; Kelvin; 01; 43; 00; 04; Float
+04.07; Beckenwasser Hysterese; static; true; Kelvin; 01; 47; 00; 04; Float
+06.03; Fremdzugriff; static; false; 0/1; 01; 4C; 00; 01; Boolean
+06.04; Schluesselnummer; static; false; 0/1; 01; 4D; 00; 01; Boolean
+06.05; SetBetriebsMode; static; false; a.b.c.d; 01; 4E; 00; 03; IntegerString
+06.07; Hzg: Externe Freigabe; static; false; 0/1; 01; 51; 00; 01; Boolean
+06.08; Hzg: Externe Ruecklaufsteuerung; static; false; Grad Celsius; 01; 52; 00; 04; Float
+06.09; St2: TempQAus < Min; static; false; Grad Celsius; 01; 56; 00; 04; Float
+06.10; St2: TempVerd < Min; static; false; Grad Celsius; 01; 5A; 00; 04; Float
+02.00; Handabschaltung; static; true; 0/1; 00; F3; 00; 01; Boolean
+06.11; Estrich Aufheizen; static; false; 0/1; 01; 5E; 00; 01; Boolean
+06.12; Hzg: Externe Steuerung; static; false; Binary; 01; 5F; 00; 01; Binary
+06.13; St2 bei EVU Absch.; static; false; 0/1; 01; 60; 00; 01; Boolean
+06.14; Frg. Beckenwasser; static; false; 0/1; 01; 61; 00; 01; Boolean
+06.15; Scale Faktor; static; false; Double; 01; 62; 00; 04; Float
+06.16; Offset Niederdr.; static; false; Double; 01; 66; 00; 04; Float
+06.17; Offset Hochdr.; static; false; Double; 01; 6A; 00; 04; Float
+06.18; DO-Handkanal; static; false; 0-8; 01; 6E; 00; 01; Integer
+06.19; DO-Handkanal Ein; static; false; 0/1; 01; 6F; 00; 01; Boolean
+#06.20; CRC-Summe; static; false; Double; 00; 8B; 00; 02; Integer
+06.21; Neu-Start; static; false; 0/1; 01; 74; 00; 01; Boolean
+06.22; Run-Flag; static; false; 0/1; 01; 75; 00; 01; Boolean
+07.09; Ausfall AI Temp WQ Aus; static; false; Grad Celcius; 00; A4; 00; 04; Float
+07.10; Ausfall AI Temp Verdampfer; static; false; Grad Celcius; 00; A8; 00; 04; Float
+07.11; Ausfall AI Temp Heizung Ein; static; false; Grad Celcius; 00; AC; 00; 04; Float
+07.12; Ausfall AI Temp Heizung Aus; static; false; Grad Celcius; 00; B0; 00; 04; Float
+07.13; Ausfall AI Temp Kondensation; static; false; Grad Celcius; 00; B4; 00; 04; Float
+07.14; Ausfall AI Temp Warmwasser; static; false; Grad Celcius; 00; B8; 00; 04; Float
+07.15; Ausfall Term AI Error; static; false; Binary; 00; BC; 00; 01; Binary
+07.16; Ausfall Term AI Di; static; false; Binary; 00; BD; 00; 01; Binary
+07.17; Ausfall AI Temp Raum; static; false; Grad Celcius; 00; BE; 00; 04; Float
+07.18; Clear Ausfälle; static; false; 0/1; 00; C2; 00; 01; Boolean
+08.00; Unterbrechungen; static; false; Binary; 00; C3; 00; 01; Binary
+08.01; Warnung Eingangsseite; static; false; Binary; 00; C4; 00; 01; Binary
+08.02; Warnung Ausgangsseite; static; false; Binary; 00; C5; 00; 01; Binary
+08.03; Warnung Sonstige; static; false; Binary; 00; C6; 00; 01; Binary
+08.04; Ausfall; static; false; Binary; 00; C7; 00; 01; Binary
+08.05; AI Error Fuehler Ausfall; static; false; Binary; 00; C8; 00; 01; Binary
+08.06; AI Di Fuehler defekt; static; false; Binary; 00; C9; 00; 01; Binary
+08.07; Kontrollwert fuer Fuehlerkalibrierung; static; false; Integer; 00; C9; 00; 03; Integer
+08.08; Unterbrechung Raumfuehler; static; false; Binary; 00; CC; 00; 01; Binary
+08.09; Kurzschluss Raumfuehler; static; false; Binary; 00; CD; 00; 01; Binary
+08.10; Unterbrechung Warnung Eingangsseite; static; false; Binary; 01; 71; 00; 01; Binary
+08.11; Unterbrechung Warnung Ausgangsseite; static; false; Binary; 01; 72; 00; 01; Binary
+08.12; Unterbrechung Warnung Ausgangsseite; static; false; Binary; 01; 73; 00; 01; Binary
+09.00; Betriebszustaende; static; false; Binary; 00; CE; 00; 01; Binary
+09.01; DO-Buffer; static; false; Binary; 00; CF; 00; 01; Binary
+09.02; DI-Buffer; static; false; Binary; 00; D0; 00; 01; Binary
+09.03; Gesamtstatus; static; false; Binary; 00; D1; 00; 03; Integer
+09.04; Status Verriegelung; static; false; Binary; 00; D4; 00; 03; Integer
+09.05; Status Heizung; static; false; Binary; 00; D7; 00; 03; Integer
+10.00; Logger Zyklus; static; false; 0-60; 00; 00; 00; 01; Integer
+10.01; Initialisierung des Loggers; static; false; 0/1; 00; 00; 00; 01; Boolean
+10.02; Speicherfehler des Loggers; static; false; unknown; 00; 00; 00; 04; Float
+10.03; Uhrzeit der Initialisierung; static; false; Zeit; 00; E3; 00; 03; Time
+10.04; Datum der Initialisierung; static; false; Datum; 00; E6; 00; 03; Date
+10.05; Maximale Anzahl der Datensaetze; static; false; Integer; 00; E9; 00; 02; Integer
+10.06; Laufende Nr. aktueller Datensatz; static; false; Integer; 00; EB; 00; 03; Integer
+10.07; Anzahl gespeicherter Datensaetze; static; false; Integer; 00; ED; 00; 02; Integer
+10.08; Groesse eines Datensatzes; static; false; Byte; 00; EF; 00; 02; Integer
+10.09; Max Groesse das Datenspeicher; static; false; Byte; 00; F1; 00; 02; Integer
+09.100; Mode Heizung Integer fuer RRDTool; dynamic; false; Integer; 00; DF; 00; 01; Integer
+09.110; Mode Kuehlung fuer RRDTool; dynamic; false; Integer; 00; E0; 00; 01; Integer
+09.120; Mode Warmwasser fuer RRDTool; dynamic; false; Integer; 00; E1; 00; 01; Integer

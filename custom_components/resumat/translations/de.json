@@ -1,0 +1,29 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Wärmepumpe (Resümat)",
+        "description": "IP-Adresse und Port des Resümat-Adapters (Standard-Port 6001). Ein evtl. laufender wp-resumat-ms Service sollte gestoppt werden.",
+        "data": {
+          "host": "Host",
+          "port": "Port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Adapter nicht erreichbar oder ungültige Antwort. IP und Port prüfen."
+    },
+    "abort": {
+      "already_configured": "Dieser Service ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "scan_interval": "Abfrageintervall (Sekunden)"
+        }
+      }
+    }
+  }
+}
