@@ -45,14 +45,22 @@ async def async_setup_entry(
 ) -> None:
     coordinator = entry.runtime_data
     names = display_names(coordinator.tokens)
-    async_add_entities(
+    entities: list[SensorEntity] = [
         ResumatSensor(coordinator, token, names[token.menu])
         for token in coordinator.tokens
         if token.data_type != "Boolean"
         and token.menu not in EXCLUDED_MENUS | DUPLICATE_MENUS
         and token.menu not in MODE_MENUS
         and not is_controlled(token)
+    ]
+    # Betriebsarten zusätzlich als Rohwert (Bitfeld, z. B. 0/1/32/64/96),
+    # der Binärsensor zeigt nur "Wert == 1"
+    entities.extend(
+        ResumatModeRawSensor(coordinator, token, f"{MODE_MENUS[token.menu]} Rohwert")
+        for token in coordinator.tokens
+        if token.menu in MODE_MENUS
     )
+    async_add_entities(entities)
 
 
 class ResumatSensor(ResumatEntity, SensorEntity):
@@ -77,6 +85,16 @@ class ResumatSensor(ResumatEntity, SensorEntity):
         if token.data_type == "Binary":
             # Bitfelder (Statusregister) – bei Bedarf manuell aktivieren
             self._attr_entity_registry_enabled_default = False
+
+    @property
+    def native_value(self):
+        return self.raw_value
+
+
+class ResumatModeRawSensor(ResumatEntity, SensorEntity):
+    """Rohwert einer Betriebsart: Statuscode, keine Messgröße (keine Statistik)."""
+
+    _attr_icon = "mdi:state-machine"
 
     @property
     def native_value(self):

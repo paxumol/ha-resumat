@@ -21,6 +21,7 @@ Der Adapter verträgt vermutlich nur eine Verbindung gleichzeitig – keine ande
 **Lesend**
 - Temperaturen, Drücke, Betriebsstunden usw. als Sensoren mit Einheit
 - 0/1-Werte als Binärsensoren, dazu „Heizbetrieb“, „Kühlbetrieb“, „Warmwasserbetrieb“
+- Dieselben Betriebsarten zusätzlich als Rohwert-Sensor („… Rohwert“, Menü 09.100/09.110/09.120). Der Regler liefert dort ein Bitfeld (beobachtet: 0, 1, 32, 64, 96), nicht nur 0/1
 - Statusregister (Bitfelder) sind standardmäßig deaktiviert und können bei Bedarf aktiviert werden
 - Das Kennwort (Menü 06.00) wird nicht als Entität angelegt
 
