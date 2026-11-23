@@ -24,8 +24,9 @@ MODE_MENUS = {
 DUPLICATE_MENUS = {"09.10", "09.11", "09.12"}
 
 # Beschreibbare Werte, die als Steuer-Entität (number/switch/time) angelegt
-# werden und daher nicht zusätzlich als Sensor. Die Uhrzeit (05.00) bleibt Sensor;
-# gestellt wird sie über den Button „Uhrzeit synchronisieren“ (button.py).
+# werden und daher nicht zusätzlich als Sensor. Die Uhrzeit (05.00) bleibt Sensor:
+# Sie ist in der CSV zwar als beschreibbar markiert, der Regler übernimmt
+# geschriebene Werte aber nicht (an der Anlage getestet).
 NOT_CONTROLLED = {"05.00"}
 
 

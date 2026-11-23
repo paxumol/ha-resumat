@@ -18,17 +18,9 @@ from .tokens import Token
 
 _LOGGER = logging.getLogger(__name__)
 
-# Erlaubte Abweichung beim Zurücklesen der laufenden Uhr (05.00)
-CLOCK_TOLERANCE_S = 10
-
-
-def _seconds_apart(a: bytes, b: bytes) -> int:
-    """Abstand zweier Uhrzeiten im Reglerformat (Sek, Min, Std) über Mitternacht hinweg."""
-    def secs(t: bytes) -> int:
-        return t[2] * 3600 + t[1] * 60 + t[0]
-
-    diff = abs(secs(a) - secs(b)) % 86400
-    return min(diff, 86400 - diff)
+# Pause nach jedem Schreiben: Zwei Schreibbefehle direkt nacheinander
+# übernimmt der Regler nicht (der zweite geht verloren).
+WRITE_PAUSE_S = 3
 
 
 class ResumatCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -89,17 +81,14 @@ class ResumatCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 raise HomeAssistantError(
                     f"{token.name}: Kontrolle nach dem Schreiben fehlgeschlagen ({err})"
                 ) from err
+            finally:
+                # Lock erst nach der Pause freigeben, damit ein direkt folgender
+                # Schreibbefehl (z. B. 02.13 und 02.14 nacheinander) nicht verloren geht
+                await asyncio.sleep(WRITE_PAUSE_S)
 
         self.async_set_updated_data(self._decode_all(memory))
         actual = memory[token.start : token.start + len(raw)]
-        if token.dynamic and token.data_type == "Time":
-            # Laufende Uhr: tickt zwischen Schreiben und Zurücklesen weiter
-            if _seconds_apart(raw, actual) > CLOCK_TOLERANCE_S:
-                raise HomeAssistantError(
-                    f"{token.name}: Uhrzeit wurde nicht übernommen "
-                    f"(gesendet {raw.hex()}, gelesen {actual.hex()})"
-                )
-        elif actual != raw:
+        if actual != raw:
             raise HomeAssistantError(
                 f"{token.name}: Wert wurde nicht übernommen "
                 f"(gesendet {raw.hex()}, gelesen {actual.hex()})"

@@ -40,7 +40,9 @@ Der Adapter verträgt vermutlich nur eine Verbindung gleichzeitig – keine ande
 
 Nach jedem Schreiben wird der Wert zurückgelesen; wurde er nicht übernommen, meldet Home Assistant einen Fehler. Die Bereiche stehen in `number.py` (`LIMITS`). Grenzen laut Waterkotte-Anleitung zum Resümat CD. Die „Externe Anhebung“ (02.10) verschiebt den Rücklauf-Sollwert um −5 … +5 K, wirkt aber nur im Zeitfenster 02.13–02.14 oder bei geschlossenem Digitaleingang „Externe Sollwertänderung“.
 
-Die Uhrzeit der Wärmepumpe (05.00) wird als Sensor angezeigt. Der Button „Uhrzeit synchronisieren“ stellt sie auf die lokale Zeit von Home Assistant (wichtig, weil das Zeitfenster 02.13–02.14 nach der Regleruhr läuft); das Datum ist nicht beschreibbar. Beim Zurücklesen sind hier bis zu 10 s Abweichung erlaubt.
+Die Uhrzeit der Wärmepumpe (05.00) wird nur angezeigt. Laut Parameterliste wäre sie beschreibbar, der Regler übernimmt geschriebene Werte aber nicht – die Uhr muss am Bedienfeld gestellt werden. Wichtig, weil das Zeitfenster 02.13–02.14 nach der Regleruhr läuft.
+
+Zwei Schreibbefehle direkt nacheinander übernimmt der Regler nicht zuverlässig. Die Integration wartet deshalb nach jedem Schreiben 3 s, bevor der nächste Zugriff erfolgt.
 
 Der Regler kennt 24:00:00 als Tagesende. Home Assistant kann das bei Uhrzeit-Entitäten nicht darstellen; sie zeigen dann 23:59:59, der Rohwert steht im Attribut `raw`.
 
