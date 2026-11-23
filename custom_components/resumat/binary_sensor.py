@@ -51,7 +51,7 @@ class ResumatModeSensor(ResumatEntity, BinarySensorEntity):
 
     Die Menüs 09.100/09.110/09.120 sind Bitfelder (an der Anlage beobachtet):
     Bit 0 = Verdichter für diesen Kreis aktiv, Bit 2 = externe Anhebung,
-    Bit 5 = Sperre, Bit 6 = kein Bedarf. Heizen mit Anhebung liefert z. B. 5,
+    Bit 5 = Pumpe ohne Verdichter (Vor-/Nachlauf), Bit 6 = kein Bedarf. Heizen mit Anhebung liefert z. B. 5,
     daher reicht ein Vergleich auf == 1 nicht.
     """
 

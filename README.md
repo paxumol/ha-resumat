@@ -21,7 +21,7 @@ Der Adapter verträgt vermutlich nur eine Verbindung gleichzeitig – keine ande
 **Lesend**
 - Temperaturen, Drücke, Betriebsstunden usw. als Sensoren mit Einheit
 - 0/1-Werte als Binärsensoren, dazu „Heizbetrieb“, „Kühlbetrieb“, „Warmwasserbetrieb“
-- Dieselben Betriebsarten zusätzlich als Rohwert-Sensor („… Rohwert“, Menü 09.100/09.110/09.120). Der Regler liefert dort ein Bitfeld (beobachtet: 0, 1, 5, 32, 64, 96 bzw. 0, 1, 8, 40): Bit 0 = Verdichter für diesen Kreis aktiv (danach richten sich die Binärsensoren), Bit 2 = externe Anhebung, Bit 3 = Warmwasser kein Bedarf, Bit 5 = Sperre, Bit 6 = Heizung kein Bedarf, 0 = nur Pumpe
+- Dieselben Betriebsarten zusätzlich als Rohwert-Sensor („… Rohwert“, Menü 09.100/09.110/09.120). Der Regler liefert dort ein Bitfeld (beobachtet: 0, 1, 5, 32, 64, 96 bzw. 0, 1, 8, 40): Bit 0 = Verdichter für diesen Kreis aktiv (danach richten sich die Binärsensoren), Bit 2 = externe Anhebung, Bit 3 = Warmwasser kein Bedarf, Bit 5 = Pumpe läuft ohne Verdichter (Vor-/Nachlauf), Bit 6 = Heizung kein Bedarf, 0 = nur Pumpe
 - Statusregister (Bitfelder) sind standardmäßig deaktiviert und können bei Bedarf aktiviert werden
 - Das Kennwort (Menü 06.00) wird nicht als Entität angelegt
 
