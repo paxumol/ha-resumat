@@ -47,11 +47,17 @@ class ResumatBinarySensor(ResumatEntity, BinarySensorEntity):
 
 
 class ResumatModeSensor(ResumatEntity, BinarySensorEntity):
-    """Betriebsart aktiv, wenn der Wert 1 ist (wie reformatMode im Java-Adapter)."""
+    """Betriebsart aktiv, wenn Bit 0 gesetzt ist.
+
+    Die Menüs 09.100/09.110/09.120 sind Bitfelder (an der Anlage beobachtet):
+    Bit 0 = Verdichter für diesen Kreis aktiv, Bit 2 = externe Anhebung,
+    Bit 5 = Sperre, Bit 6 = kein Bedarf. Heizen mit Anhebung liefert z. B. 5,
+    daher reicht ein Vergleich auf == 1 nicht.
+    """
 
     _attr_device_class = BinarySensorDeviceClass.RUNNING
 
     @property
     def is_on(self) -> bool | None:
         value = self.raw_value
-        return None if value is None else value == 1
+        return None if value is None else bool(value & 1)
