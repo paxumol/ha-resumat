@@ -13,6 +13,9 @@ from typing import Any
 
 CSV_FILE = Path(__file__).parent / "menu_addresses.csv"
 
+# Wert, den der Regler bei fehlendem Fühler liefert (z. B. Temp-Raum ohne Raumfühler)
+NO_SENSOR = -111.11
+
 
 @dataclass(frozen=True, slots=True)
 class Token:
@@ -32,7 +35,11 @@ class Token:
         dt = self.data_type
         if dt == "Float":
             value = struct.unpack("<f", raw[:4])[0]
-            return None if math.isnan(value) or math.isinf(value) else round(value, 2)
+            if math.isnan(value) or math.isinf(value):
+                return None
+            value = round(value, 2)
+            # Platzhalter des Reglers für nicht angeschlossene Fühler
+            return None if value == NO_SENSOR else value
         if dt == "Integer":
             return int.from_bytes(raw, "big")
         if dt == "Boolean":

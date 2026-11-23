@@ -18,6 +18,18 @@ from .tokens import Token
 
 _LOGGER = logging.getLogger(__name__)
 
+# Erlaubte Abweichung beim Zurücklesen der laufenden Uhr (05.00)
+CLOCK_TOLERANCE_S = 10
+
+
+def _seconds_apart(a: bytes, b: bytes) -> int:
+    """Abstand zweier Uhrzeiten im Reglerformat (Sek, Min, Std) über Mitternacht hinweg."""
+    def secs(t: bytes) -> int:
+        return t[2] * 3600 + t[1] * 60 + t[0]
+
+    diff = abs(secs(a) - secs(b)) % 86400
+    return min(diff, 86400 - diff)
+
 
 class ResumatCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     """Hält die dekodierten Werte als {menu: wert}."""
@@ -80,7 +92,14 @@ class ResumatCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
         self.async_set_updated_data(self._decode_all(memory))
         actual = memory[token.start : token.start + len(raw)]
-        if actual != raw:
+        if token.dynamic and token.data_type == "Time":
+            # Laufende Uhr: tickt zwischen Schreiben und Zurücklesen weiter
+            if _seconds_apart(raw, actual) > CLOCK_TOLERANCE_S:
+                raise HomeAssistantError(
+                    f"{token.name}: Uhrzeit wurde nicht übernommen "
+                    f"(gesendet {raw.hex()}, gelesen {actual.hex()})"
+                )
+        elif actual != raw:
             raise HomeAssistantError(
                 f"{token.name}: Wert wurde nicht übernommen "
                 f"(gesendet {raw.hex()}, gelesen {actual.hex()})"

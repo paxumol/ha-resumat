@@ -40,7 +40,11 @@ Der Adapter verträgt vermutlich nur eine Verbindung gleichzeitig – keine ande
 
 Nach jedem Schreiben wird der Wert zurückgelesen; wurde er nicht übernommen, meldet Home Assistant einen Fehler. Die Bereiche stehen in `number.py` (`LIMITS`). Grenzen laut Waterkotte-Anleitung zum Resümat CD. Die „Externe Anhebung“ (02.10) verschiebt den Rücklauf-Sollwert um −5 … +5 K, wirkt aber nur im Zeitfenster 02.13–02.14 oder bei geschlossenem Digitaleingang „Externe Sollwertänderung“.
 
-Die Uhrzeit der Wärmepumpe (05.00) wird nur angezeigt, nicht gesetzt.
+Die Uhrzeit der Wärmepumpe (05.00) wird als Sensor angezeigt. Der Button „Uhrzeit synchronisieren“ stellt sie auf die lokale Zeit von Home Assistant (wichtig, weil das Zeitfenster 02.13–02.14 nach der Regleruhr läuft); das Datum ist nicht beschreibbar. Beim Zurücklesen sind hier bis zu 10 s Abweichung erlaubt.
+
+Der Regler kennt 24:00:00 als Tagesende. Home Assistant kann das bei Uhrzeit-Entitäten nicht darstellen; sie zeigen dann 23:59:59, der Rohwert steht im Attribut `raw`.
+
+Nicht angeschlossene Fühler meldet der Regler mit −111,11 °C (z. B. Temp-Raum ohne Raumfühler). Diese Werte werden als „nicht verfügbar“ angezeigt. Einzelne defekte Fühler lassen sich in Home Assistant über die Entitäts-Einstellungen deaktivieren.
 
 Das Abfrageintervall ist in den Optionen der Integration änderbar (Standard 60 s).
 
